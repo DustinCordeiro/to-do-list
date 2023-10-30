@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-to-do-input-add-itens',
@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class ToDoInputAddItensComponent {
 
+  @Output() public emmitItemTaskList = new EventEmitter();
+
+  public addItemTaskList:string = "";
+
+  submitItemTaskList = () => {
+    this.addItemTaskList = this.addItemTaskList.trim();
+
+    if(this.addItemTaskList){
+      this.emmitItemTaskList.emit(this.addItemTaskList);
+      this.addItemTaskList = "";
+    }
+  }
 }
